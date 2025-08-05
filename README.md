@@ -4,7 +4,7 @@ This repository contains Terraform configurations for managing AWS infrastructur
 
 ## Prerequisites
 
-- [Terraform](https://www.terraform.io/downloads.html) (version >= 1.0)
+- [Terraform](https://www.terraform.io/downloads.html) (version >= 1.12)
 - [AWS CLI](https://aws.amazon.com/cli/) configured with appropriate credentials
 
 ## Configuration
@@ -35,11 +35,6 @@ The main configuration is in `main.tf` and currently sets up:
    terraform destroy
    ```
 
-## File Structure
-
-- `main.tf` - Main Terraform configuration file
-- `.gitignore` - Git ignore rules for Terraform projects
-- `README.md` - This documentation file
 
 ## Security Notes
 
