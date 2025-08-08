@@ -1,51 +1,44 @@
-# Terraform Infrastructure
+## Setup
 
-This repository contains Terraform configurations for managing AWS infrastructure.
+Follow these steps to configure AWS credentials securely for this project.
 
-## Prerequisites
+### 1) Install the AWS CLI and Terraform
+- AWS CLI: `brew install awscli`
+- Terraform: `brew tap hashicorp/tap && brew install hashicorp/tap/terraform`
 
-- [Terraform](https://www.terraform.io/downloads.html) (version >= 1.12)
-- [AWS CLI](https://aws.amazon.com/cli/) configured with appropriate credentials
+### 2) Configure a named AWS profile (recommended)
+Run:
 
-## Configuration
+```bash
+aws configure --profile <profile-name>
+```
 
-The main configuration is in `main.tf` and currently sets up:
+Provide your Access key ID, Secret access key, default region, and output format. Credentials are stored under `~/.aws/credentials`.
 
-- AWS provider configured for the `ap-southeast-2` region
+### 3) Configure project variables
 
-## Usage
+Set your profile and region:
 
-1. Initialize Terraform:
-   ```bash
-   terraform init
-   ```
+Edit `terraform.tfvars`:
 
-2. Plan the infrastructure:
-   ```bash
-   terraform plan
-   ```
+```hcl
+aws_region  = "ap-southeast-2"
+aws_profile = "<profile-name>"
+```
 
-3. Apply the configuration:
-   ```bash
-   terraform apply
-   ```
+### 4) Initialize and run
 
-4. Destroy the infrastructure (when needed):
-   ```bash
-   terraform destroy
-   ```
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+## Best practices
+
+- Do not hardcode credentials in `.tf` files. Use a named profile, environment variables, or AWS SSO.
+- Prefer short‑lived credentials (SSO or `aws configure sso`) over long‑lived access keys.
+- Keep `terraform.tfvars` and state files out of git (see `.gitignore`).
 
 
-## Security Notes
 
-- Never commit `.tfvars` files that contain sensitive information
-- Use AWS IAM roles and policies with minimal required permissions
-- Consider using Terraform Cloud or similar services for state management in production
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test your changes with `terraform plan`
-5. Submit a pull request 
