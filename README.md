@@ -1,3 +1,10 @@
+## Terraform example
+
+This is a minimal Terraform example for AWS. It demonstrates best practices for:
+- **Provider and CLI version pinning** for reproducible runs
+- **Secure credential setup** using a named AWS CLI profile
+- **Variable-driven configuration** via `variables.tf` and `terraform.tfvars`
+
 ## Setup
 
 Follow these steps to configure AWS credentials securely for this project.
